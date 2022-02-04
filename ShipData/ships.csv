@@ -1,0 +1,24 @@
+﻿Id,UniqueId,Name,LaunchedDate,Description,CountryId,NumberGuns,Bore,NormalDisplacement,Active
+1,f199e709-c9bd-4461-9fe9-fd7f34e846a3,Haruna,1916/01/01 00:00:00,Class Kongo.  Type Cruiser.,3,8,14,32000, false
+2,98c5931e-1122-4f8e-b547-6f403838e7fd,Hiei,1914/01/01 00:00:00,Class Kongo.  Type Cruiser.,3,8,14,32000, false
+3,913e4535-b7b7-4a36-aff8-a25e7e2e5f29,Iowa,1943/08/27 00:00:00,Class Iowa.  Type Battleship.,4,9,16,46000, false
+4,0d0f3292-55e0-4972-8197-afa5f90b0d4a,Kirishima,1915/01/01 00:00:00,Class Kongo.  Type Cruiser.,3,8,14,32000, false
+5,5101a112-daaa-498d-be2f-9442b4af8149,Kongo,1913/01/01 00:00:00,Class Kongo.  Type Cruiser.,3,8,14,32000, false
+6,580be87c-5010-45f6-ac49-7d19ada4390a,Missouri,1944/01/29 00:00:00,Class Iowa.  Type Battleship.,4,9,16,46000, false
+7,91f315c4-a112-4748-b05d-57e09609063f,Musashi,1942/01/01 00:00:00,Class Yamato.  Type Battleship.,3,9,18,65000, false
+8,996699bb-b201-4d50-9f90-e934e8a3c497,New Jersey,1943/12/07 00:00:00,Class Iowa.  Type Battleship.,4,9,16,46000, false
+9,fd67ffb8-2271-4040-bb79-23e609f3d594,North Carolina,1941/01/01 00:00:00,Class North Carolina.  Type Battleship.,4,12,16,37000, false
+10,105d1f7d-0fea-4e75-a7b7-3312130d9fa9,Ramillies,1917/01/01 00:00:00,Class Revenge.  Type Battleship.,2,8,15,29000, false
+11,f4a5ddd5-0950-414d-9569-0646d994eeb0,Renown,1916/01/01 00:00:00,Class Renown.  Type Cruiser.,2,6,15,32000, false
+12,ad92a9b1-3bac-41b2-a9cb-bb0fd42f4b37,Repulse,1916/01/01 00:00:00,Class Renown.  Type Cruiser.,2,6,15,32000, false
+13,8faccb4b-e634-4522-8392-ffc4486c4cfb,Resolution,1916/01/01 00:00:00,Class Renown.  Type Cruiser.,2,6,15,32000, false
+14,cfa22a3f-0064-4322-acd4-d9ed0e32f4fa,Revenge,1916/01/01 00:00:00,Class Revenge.  Type Battleship.,2,8,15,29000, false
+15,b8bad1a9-a154-4e59-8628-c2ac2ddc1d04,Royal Oak,1916/01/01 00:00:00,Class Revenge.  Type Battleship.,2,8,15,29000, false
+16,bf13830b-74d8-4c6a-990f-f88b64a87755,Royal Sovereign,1916/01/01 00:00:00,Class Revenge.  Type Battleship.,2,8,15,29000, false
+17,7529e090-4211-4058-aff7-69da00466fac,Tennessee,1920/01/01 00:00:00,Class Tennessee.  Type Battleship.,4,12,14,32000, false
+18,e5417266-2e23-4fa7-afcd-e49f5f6c1a33,Washington,1941/01/01 00:00:00,Class North Carolina.  Type Battleship.,4,12,16,37000, false
+19,e0fb199f-d31b-42a6-bf48-ff79160d73be,Wisconsin,1943/12/07 00:00:00,Class Iowa.  Type Battleship.,4,9,16,46000, false
+20,4220e1bd-317a-4b82-90f9-5efee4b5d956,Yamato,1941/12/16 00:00:00,Class Yamato.  Type Battleship.,3,9,18,65000, false
+21,b79c77ac-f903-49de-9342-796ac70891d7,South Dakota,1941/01/01 00:00:00,Class North Carolina.  Type Battleship.,4,12,16,37000, false
+22,fa1be4d9-2c27-4f45-abc0-483a00556c84,California,1921/01/01 00:00:00,Class Tennessee.  Type Battleship.,4,12,14,32000, false
+23,31d14fac-559c-4180-b616-07b2d86172ef,Gerald R. Ford,2017/01/01  00:00:00, Class Gerald R. Ford.  Type Aircraft carrier.,4,0,0,100000, true
