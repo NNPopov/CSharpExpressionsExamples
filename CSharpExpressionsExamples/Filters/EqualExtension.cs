@@ -5,6 +5,7 @@ namespace CSharpExpressionsExamples.Filters;
 
 public static class EqualExtension
 {
+    // video description https://youtu.be/GgikmzRhHl0
     // ships.Where(t=>t.Name =="Missouri")
     public static IQueryable<TSource> EqualGenericMethod<TSource, TValue>(this IQueryable<TSource> source,
         string propertyName,
