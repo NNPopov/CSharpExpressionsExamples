@@ -1,5 +1,8 @@
 ﻿using System.Reflection;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Diagnostics;
+using Microsoft.Extensions.Logging;
+using Serilog;
 using ShipData.Entities;
 
 namespace ShipData;
@@ -22,7 +25,10 @@ public class ExampleDbContext : DbContext
     {
         options
             .UseSqlite($"Data Source={_dbPath}")
-            .LogTo(Console.WriteLine)
+            .LogTo(Log.Information,
+                (eventId, logLevel) => logLevel == LogLevel.Information
+                                       && eventId == RelationalEventId.CommandExecuted,
+                DbContextLoggerOptions.Category )
             .EnableSensitiveDataLogging();
     }
 

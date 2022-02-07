@@ -1,10 +1,14 @@
 ﻿using ShipData;
+using ShipData.Entities;
 using System.Diagnostics;
 
 namespace CSharpExpressionsExamples.Filters
 {
     public class TestEqualExtensionMethods
     {
+        /// <summary>
+        /// Testing a method in which the type of the searched value matches the data type of the field being searched.
+        /// </summary>
         public void TestGenericMethod()
         {
             var contextBuilder = new ContextInitializer();
@@ -41,33 +45,43 @@ namespace CSharpExpressionsExamples.Filters
             Debug.Assert(guidEqual.Count() == 1);
         }
 
-        public void TestEqualConvertMethod()
+        /// <summary>
+        /// Testing a method where the data type of the lookup is string and does not match the datatype of the lookup field.
+        /// </summary>
+        public void TestEqualParseMethod()
         {
             var contextBuilder = new ContextInitializer();
             var exampleDbContext = contextBuilder.GetContext();
 
-            var intEqual = exampleDbContext
-                .Ships
-                .EqualParseMethod("Id", "1").ToList();
-            Debug.Assert(intEqual.Count() == 1);
 
-            var boolEqual = exampleDbContext
-                .Ships
-                .EqualParseMethod("Active", "true")
-                .ToList();
-            Debug.Assert(boolEqual.Count() == 1);
+            // 1. Filters are applied sequentially to the IQueryable.
+            IQueryable<Ship> ships = exampleDbContext.Ships;
 
-            var datetimeEqual = exampleDbContext
-                .Ships
-                .EqualParseMethod("LaunchedDate", "1941/12/16 00:00:00")
-                .ToList();
-            Debug.Assert(datetimeEqual.Count() == 1);
+            _filterParameters
+              .ForEach(t => ships = ships.EqualParseMethod(t.PropertyName, t.PropertyValue));
 
-            var guidEqual = exampleDbContext
-                .Ships
-                .EqualParseMethod("UniqueId", "8faccb4b-e634-4522-8392-ffc4486c4cfb")
-                .ToList();
-            Debug.Assert(guidEqual.Count() == 1);
+            var searchResult = ships.ToList();
+
+            Debug.Assert(searchResult.Count() == 2);
+
+
+
+            // 2. The filter is formed completely for all conditions and then applied to the IQueryable
+            IQueryable<Ship> ships2 = exampleDbContext.Ships;
+
+            ships2 = ships2.EqualParseMethod(_filterParameters);
+
+            var searchResult2 = ships2.ToList();
+
+            Debug.Assert(searchResult2.Count() == 2);
         }
+
+        private readonly List<(string PropertyName, string PropertyValue)> _filterParameters = new()
+        {
+            ("Active", "true"),
+            ("CountryId", "2"),
+            ("NormalDisplacement", "65000"),
+            ("NumberGuns", "0")
+        };
     }
 }

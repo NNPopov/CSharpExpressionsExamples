@@ -23,40 +23,72 @@ public static class EqualExtension
 
         //(t => t.Name == value)
         Expression<Func<TSource, bool>> filterPredicate = Expression.Lambda<Func<TSource, bool>>(filterExpression, parameterExpression);
- 
+
         return source.Where(filterPredicate);
     }
 
-
-    public static IQueryable<TSource> EqualParseMethod<TSource>(this IQueryable<TSource> source, string propertyName,
+    // video description https://youtu.be/BFpYiPhuyJk
+    //where(t=>t.Id == int.parse("1");
+    //where(t=>t.property == [type].Parse(value))
+    public static IQueryable<TSource> EqualParseMethod<TSource>(this IQueryable<TSource> source,
+        string propertyName,
         string value)
     {
-        // t
+        //t
         ParameterExpression parameterExpression = Expression.Parameter(typeof(TSource), "t");
 
-        // t => t.propertyName
-        Expression propertyExpression = Expression.Property(parameterExpression, propertyName);
+        //t.Property
+        MemberExpression propertyExpression = Expression.Property(parameterExpression, propertyName);
 
-        //Parse expression
-        MemberExpression body = propertyExpression as MemberExpression;
+        //[type].Parse(value)
+        PropertyInfo properyInfo = propertyExpression.Member as PropertyInfo;
 
-        PropertyInfo propertyInfo = body.Member as PropertyInfo;
+        MethodInfo parseMethod = properyInfo.PropertyType.GetMethod("Parse", new[] { typeof(string) });
 
-        //[type].Parse(String)
-        MethodInfo parseMethod = propertyInfo.PropertyType.GetMethod("Parse", new[] { typeof(string) });
+        ConstantExpression constantExpression
+            = Expression.Constant(value);
 
-        // value 
-        ConstantExpression constantValueExpression = Expression.Constant(value);
+        MethodCallExpression parseCall = Expression.Call(parseMethod, constantExpression);
 
-        // [type].Parse(value)
-        MethodCallExpression parseCall = Expression.Call(parseMethod, constantValueExpression);
-
-        // t.propertyName == [type].Parse(value)
+        //t.Property == [type].Parse(value)
         BinaryExpression filterExpression = Expression.Equal(propertyExpression, parseCall);
 
-        // (t => t.propertyName == [type].Parse(value))
-        Expression<Func<TSource, bool>> filterPredicate =
-            Expression.Lambda<Func<TSource, bool>>(filterExpression, parameterExpression);
+
+        //(t=>t.Property == [type].Parse(value)
+        Expression<Func<TSource, bool>> filterPredicate = Expression.Lambda<Func<TSource, bool>>(filterExpression, parameterExpression);
+
+        return source.Where(filterPredicate);
+    }
+
+    // video description https://youtu.be/BFpYiPhuyJk
+    public static IQueryable<TSource> EqualParseMethod<TSource>(this IQueryable<TSource> source,
+        ICollection<(string PropertyName, string PropertyValue)> filters)
+    {
+        ParameterExpression parameterExpression = Expression.Parameter(typeof(TSource), "t");
+
+        BinaryExpression filterExpression = null;
+
+        foreach (var (propertyName, propertyValue) in filters)
+        {
+            MemberExpression propertyExpression = Expression.Property(parameterExpression, propertyName);
+
+            PropertyInfo properyInfo = propertyExpression.Member as PropertyInfo;
+
+            MethodInfo parseMethod = properyInfo.PropertyType.GetMethod("Parse", new[] { typeof(string) });
+
+            ConstantExpression constantExpression
+                = Expression.Constant(propertyValue);
+
+            MethodCallExpression parseCall = Expression.Call(parseMethod, constantExpression);
+
+            filterExpression = filterExpression switch
+            {
+                null => Expression.Equal(propertyExpression, parseCall),
+                _ => Expression.And(filterExpression, Expression.Equal(propertyExpression, parseCall))
+            };
+        }
+
+        Expression<Func<TSource, bool>> filterPredicate = Expression.Lambda<Func<TSource, bool>>(filterExpression, parameterExpression);
 
         return source.Where(filterPredicate);
     }

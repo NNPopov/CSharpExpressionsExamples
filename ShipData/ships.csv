@@ -21,4 +21,6 @@
 20,4220e1bd-317a-4b82-90f9-5efee4b5d956,Yamato,1941/12/16 00:00:00,Class Yamato.  Type Battleship.,3,9,18,65000, false
 21,b79c77ac-f903-49de-9342-796ac70891d7,South Dakota,1941/01/01 00:00:00,Class North Carolina.  Type Battleship.,4,12,16,37000, false
 22,fa1be4d9-2c27-4f45-abc0-483a00556c84,California,1921/01/01 00:00:00,Class Tennessee.  Type Battleship.,4,12,14,32000, false
-23,31d14fac-559c-4180-b616-07b2d86172ef,Gerald R. Ford,2017/01/01  00:00:00, Class Gerald R. Ford.  Type Aircraft carrier.,4,0,0,100000, true
+23,31d14fac-559c-4180-b616-07b2d86172ef,Gerald R. Ford,2017/01/01 00:00:00, Class Gerald R. Ford.  Type Aircraft carrier.,4,0,0,100000, true
+24,d2b84037-7c3d-4a77-be5c-d4b13cbbc32d,Queen Elisabeth,2014/07/17 00:00:00, Class Queen Elisabeth.  Type Aircraft carrier.,2,0,0,65000, true
+25,d6f6f56d-a676-4840-af4f-8862a972f962,Prince of Wales,2017/12/10 00:00:00, Class Queen Elisabeth.  Type Aircraft carrier.,2,0,0,65000, true

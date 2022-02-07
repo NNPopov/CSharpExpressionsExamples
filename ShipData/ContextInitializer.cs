@@ -20,7 +20,7 @@ public class ContextInitializer
 
             exampleDbContext.SaveChanges();
         }
-
+        Console.Clear();
         return exampleDbContext;
     }
 
